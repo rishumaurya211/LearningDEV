@@ -1,17 +1,45 @@
-import React from 'react'
+import React from "react";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 
-import Assigment3 from './Assigment3'
-import Assigment1 from './Assigment1'
-import Assigment4 from './Assigment4'
-
+import Dashboard from "./Components/Dashboard";
+import { Landing } from "./Components/Landing";
 
 const App = () => {
   return (
-    <>
+    <div>
+      <BrowserRouter>
+        <AppBar />
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Landing />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 
-<Assigment4/>
-    </>
-  )
-}
+  function AppBar() {
+    const navigate = useNavigate();
+    return (
+      <div>
+        <div>
+          <button
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Landing Page
+          </button>
+          <button
+            onClick={() => {
+              navigate("/dashboard");
+            }}
+          >
+            Dashboard Page
+          </button>
+        </div>
+      </div>
+    );
+  }
+};
 
-export default App
+export default App;
